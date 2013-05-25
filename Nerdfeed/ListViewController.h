@@ -8,6 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ListViewController : UITableViewController
+@class RSSChannel;
+@class WebViewController;
+
+@interface ListViewController : UITableViewController <NSURLConnectionDataDelegate, NSXMLParserDelegate>
+{
+    NSURLConnection *conn;
+    NSMutableData *xmlData;
+    
+    RSSChannel *channel;
+}
+
+@property (nonatomic, strong) WebViewController *webViewController;
+
+- (void)fetchEntries;
 
 @end
